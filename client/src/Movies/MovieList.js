@@ -1,13 +1,9 @@
 import React from 'react';
-import MovieCard from './MovieCard';
 
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function MovieList(props) {
   const { movies } = props;
-
-  // const { url } = useRouteMatch();
-  // console.log(url);
 
   return (
     <div className="movie-list">

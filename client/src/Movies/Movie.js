@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import {
-  useParams,
-  useRouteMatch,
-  Link
-} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function Movie(props) {
-  // const { items } = props;
-
-  // const { itemId } = useParams();
-  const { url } = useRouteMatch();
 
   const [movie, setMovie] = useState();
 
-  // let id = 1;
   const { id } = useParams();
   // Change ^^^ that line and use a hook to obtain the :id parameter from the URL
 
@@ -24,7 +15,7 @@ export default function Movie(props) {
       .get(`http://localhost:5000/api/movies/${id}`) // Study this endpoint with Postman
       .then(response => {
         // console.log(response);
-        setMovie(response);
+        setMovie(response.data);
         // Study this response with a breakpoint or log statements
         // and set the response data as the 'movie' slice of state
       })
@@ -46,9 +37,7 @@ export default function Movie(props) {
 
   return (
     <div className="save-wrapper">
-      {/* <Link path={`${url}/movies/${movie.id}`} > */}
       <div className="movie-card">
-      {/* <Link path={`${url}/movies/${movie.id}`} > */}
         <h2>{title}</h2>
         <div className="movie-director">
           Director: <em>{director}</em>
@@ -64,7 +53,6 @@ export default function Movie(props) {
         ))}
       </div>
       <div className="save-button">Save</div>
-      {/* </Link> */}
     </div>
   );
 }
